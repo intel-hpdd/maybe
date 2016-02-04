@@ -1,0 +1,3 @@
+# maybe
+The Maybe datatype
+
