@@ -1,0 +1,11 @@
+[ignore]
+.*node_modules/babel-.*
+.*node_modules/babylon.*
+.*node_modules/intel-fp/test/fp-test.js
+.*dist/maybe*
+
+[include]
+
+[libs]
+
+[options]
