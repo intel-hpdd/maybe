@@ -1,5 +1,5 @@
 {
-  "name": "maybe",
+  "name": "intel-maybe",
   "version": "1.0.0",
   "description": "The Maybe datatype",
   "main": "dist/maybe.js",
