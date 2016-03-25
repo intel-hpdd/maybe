@@ -7,7 +7,17 @@
     "test": "NODE_ENV=test ./bin/test.js",
     "eslint": "eslint ./",
     "jscs": "jscs .",
-    "prepublish": "babel -d dist maybe.js && cp ./maybe.js ./dist/maybe.js.flow"
+    "prepublish": "./bin/build.sh",
+    "cover:dev": "npm run cover -- --reporter=html",
+    "cover": "NODE_ENV=test ./bin/build.sh cover && nyc --reporter=text npm t"
+  },
+  "nyc": {
+    "include": [
+      "/"
+    ],
+    "exclude": [
+      "test"
+    ]
   },
   "publishConfig": {
     "registry": "https://ubit-artifactory-or.intel.com/artifactory/api/npm/iml-npm-local"
@@ -30,6 +40,7 @@
     "babel-cli": "6.4.5",
     "babel-core": "6.4.5",
     "babel-eslint": "5.0.0-beta9",
+    "babel-plugin-__coverage__": "0.1111.1",
     "babel-plugin-syntax-flow": "6.3.13",
     "babel-plugin-transform-class-properties": "6.4.0",
     "babel-plugin-transform-flow-strip-types": "6.4.0",
@@ -42,6 +53,7 @@
     "intel-jasmine-n-matchers": "2.1.1",
     "jasmine": "2.4.1",
     "jscs": "2.9.0",
+    "nyc": "6.1.1",
     "pre-commit": "1.1.2"
   }
 }

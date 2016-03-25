@@ -25,7 +25,7 @@ require('babel-register');
 jasmine.loadConfig({
   spec_dir: 'test',
   spec_files: [
-    '**/*.js'
+    '**/*-test.js'
   ],
   random: true
 });

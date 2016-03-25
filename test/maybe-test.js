@@ -3,7 +3,7 @@
 import {env, jasmine} from '../bin/test';
 const {describe, it, expect} = env;
 
-import {default as Maybe, withDefault} from '../maybe';
+import {default as Maybe, withDefault} from '../source/maybe';
 
 describe('Maybe', () => {
   it('should return a new Maybe when of is called', () => {
