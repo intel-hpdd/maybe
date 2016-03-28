@@ -1,8 +1,6 @@
 // @flow
 
-import {env, jasmine} from '../bin/test';
-const {describe, it, expect} = env;
-
+import {describe, it, expect, jasmine} from './jasmine';
 import {default as Maybe, withDefault} from '../source/maybe';
 
 describe('Maybe', () => {
