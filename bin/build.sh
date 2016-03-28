@@ -2,13 +2,13 @@
 
 rm -rf dist
 
-babel -d dist "test/maybe-test.js"
+babel -d dist "test/**/*-test.js"
 
 if [[ $1 == "cover" ]]; then
   # Instrumenting the src file.
-  babel -d dist "./source/maybe.js" --plugins __coverage__
+  babel -d dist "source/**/*.js" --plugins __coverage__
 else
-  babel -d dist "./source/maybe.js"
+  babel -d dist "source/**/*.js"
 fi
 
 for i in $( find ./source -type f ); do
