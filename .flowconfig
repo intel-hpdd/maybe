@@ -1,11 +1,14 @@
 [ignore]
+.*dist/maybe*
 .*node_modules/babel-.*
 .*node_modules/babylon.*
-.*node_modules/intel-fp/test/fp-test.js
-.*dist/maybe*
+.*\(lib\|test\|builtin-modules\|binary-extensions\|faker\|spdx\).*\.json
 
 [include]
 
 [libs]
+node_modules/intel-flow-jasmine/flow-typed
 
 [options]
+module.use_strict=true
+experimental.strict_type_args=true
