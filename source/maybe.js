@@ -33,3 +33,7 @@ export const map = fp.curry2((fn, a) =>
 export const withDefault = fp.curry2((defaultFn, a) =>
   a == null ? defaultFn() : a
 );
+
+export const matchWith = fp.curry2(({Just, Nothing}, a) =>
+  a == null ? Nothing() : Just(a)
+);
