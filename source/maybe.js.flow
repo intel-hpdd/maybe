@@ -27,11 +27,21 @@ import type {
 
 declare export class Maybe <A> { value:?A }
 
+declare export var Nothing:Maybe<any>;
+
 declare export function of <A>(a:?A):Maybe<A>;
 declare export function from <A>(mA:Maybe<A>):?A;
 
 declare export function withDefault <A> (defaultFn:() => A, ...rest:void[]):Fn1<Maybe<A>, A>;
 declare export function withDefault <A> (defaultFn:() => A, mA:Maybe<A>):A;
+
+declare type caseT <A, B> = {|
+  Just: (a:A) => B,
+  Nothing: () => B
+|};
+
+declare export function matchWith <A, B> (case:caseT<A,B>, ...rest:empty[]):Fn1<Maybe<A>, B>;
+declare export function matchWith <A, B> (case:caseT<A,B>, ma:Maybe<A>):B;
 
 declare export function map<A,B>(fn:Fn1<A, B>, xs:Maybe<A>, ...rest:Array<void>):Maybe<B>;
 declare export function map<A,B>(fn:Fn1<A, B>, ...rest:Array<void>):Fn1<Maybe<A>, Maybe<B>>;

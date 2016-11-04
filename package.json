@@ -31,7 +31,7 @@
   "author": "IML Team",
   "license": "MIT",
   "dependencies": {
-    "intel-fp": "6.0.0"
+    "intel-fp": "7.0.0"
   },
   "devDependencies": {
     "babel-cli": "6.18.0",
@@ -45,13 +45,13 @@
     "eslint": "3.9.1",
     "eslint-plugin-flowtype": "2.25.0",
     "eslint-plugin-fp": "2.2.0",
-    "eslint-plugin-import": "2.0.1",
+    "eslint-plugin-import": "2.1.0",
     "flow-bin": "0.34.0",
     "intel-flow-jasmine": "1.5.0",
     "intel-jasmine-junit-reporter": "1.0.0",
     "intel-jasmine-n-matchers": "2.1.1",
     "jasmine": "2.5.2",
-    "nyc": "8.3.2",
+    "nyc": "8.4.0",
     "pre-commit": "1.1.3"
   }
 }

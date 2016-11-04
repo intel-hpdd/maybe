@@ -70,4 +70,36 @@ describe('Maybe', () => {
         .toBe('foo');
     });
   });
+
+  describe('matchWith', () => {
+    it('should perform case matches', () => {
+      const result:'bar' = maybe.matchWith({
+        Just: () => 'bar',
+        Nothing: () => 'bar'
+      }, maybe.of('foo'));
+    });
+
+    it('should call the Nothing case', () => {
+      const result:string = maybe.matchWith(
+        {
+          Just:() => 'boom',
+          Nothing:() => 'bap'
+        },
+        maybe.Nothing
+      );
+
+      expect(result)
+        .toBe('bap');
+    });
+
+    it('should work when curried', () => {
+      const result:string = maybe.matchWith({
+        Just:(x) => `ba${x}`,
+        Nothing:() => 'bap'
+      })(maybe.of('p'));
+
+      expect(result)
+        .toBe('bap');
+    });
+  });
 });
