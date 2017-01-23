@@ -3,7 +3,7 @@
 //
 // INTEL CONFIDENTIAL
 //
-// Copyright 2013-2016 Intel Corporation All Rights Reserved.
+// Copyright 2013-2017 Intel Corporation All Rights Reserved.
 //
 // The source code contained or described herein and all documents related
 // to the source code ("Material") are owned by Intel Corporation or its
@@ -21,27 +21,41 @@
 // otherwise. Any license under such intellectual property rights must be
 // express and approved by Intel in writing.
 
-import type {
-  Fn1
-} from 'intel-fp';
+import type { Fn1 } from '@iml/fp';
 
-declare export class Maybe <A> { value:?A }
+declare export class Maybe<A> { value: ?A }
 
-declare export var Nothing:Maybe<any>;
+declare export var Nothing: Maybe<any>;
 
-declare export function of <A>(a:?A):Maybe<A>;
-declare export function from <A>(mA:Maybe<A>):?A;
+declare export function of<A>(a: ?A): Maybe<A>;
+declare export function from<A>(mA: Maybe<A>): ?A;
 
-declare export function withDefault <A> (defaultFn:() => A, ...rest:void[]):Fn1<Maybe<A>, A>;
-declare export function withDefault <A> (defaultFn:() => A, mA:Maybe<A>):A;
+declare export function withDefault<A>(
+  defaultFn: () => A,
+  ...rest: void[]
+): Fn1<Maybe<A>, A>;
+declare export function withDefault<A>(
+  defaultFn: () => A,
+  mA: Maybe<A>
+): A;
 
-declare type caseT <A, B> = {|
-  Just: (a:A) => B,
-  Nothing: () => B
-|};
+type caseT<A, B> = {| Just(a: A): B, Nothing(): B |};
 
-declare export function matchWith <A, B> (case:caseT<A,B>, ...rest:empty[]):Fn1<Maybe<A>, B>;
-declare export function matchWith <A, B> (case:caseT<A,B>, ma:Maybe<A>):B;
+declare export function matchWith<A, B>(
+  case: caseT<A, B>,
+  ...rest: empty[]
+): Fn1<Maybe<A>, B>;
+declare export function matchWith<A, B>(
+  case: caseT<A, B>,
+  ma: Maybe<A>
+): B;
 
-declare export function map<A,B>(fn:Fn1<A, B>, xs:Maybe<A>, ...rest:Array<void>):Maybe<B>;
-declare export function map<A,B>(fn:Fn1<A, B>, ...rest:Array<void>):Fn1<Maybe<A>, Maybe<B>>;
+declare export function map<A, B>(
+  fn: Fn1<A, B>,
+  xs: Maybe<A>,
+  ...rest: Array<void>
+): Maybe<B>;
+declare export function map<A, B>(
+  fn: Fn1<A, B>,
+  ...rest: Array<void>
+): Fn1<Maybe<A>, Maybe<B>>;

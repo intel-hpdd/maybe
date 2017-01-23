@@ -1,7 +1,7 @@
 //
 // INTEL CONFIDENTIAL
 //
-// Copyright 2013-2016 Intel Corporation All Rights Reserved.
+// Copyright 2013-2017 Intel Corporation All Rights Reserved.
 //
 // The source code contained or described herein and all documents related
 // to the source code ("Material") are owned by Intel Corporation or its
@@ -19,21 +19,21 @@
 // otherwise. Any license under such intellectual property rights must be
 // express and approved by Intel in writing.
 
-import * as fp from 'intel-fp';
+import * as fp from '@iml/fp';
 
-export const of = (a) => a;
-export const from = (mA) => mA;
+export const of = a => a;
+export const from = mA => mA;
 
 export const Nothing = null;
 
-export const map = fp.curry2((fn, a) =>
-  a == null ? Nothing : fn(a)
+export const map = fp.curry2(
+  (fn, a) => a == null ? Nothing : fn(a)
 );
 
-export const withDefault = fp.curry2((defaultFn, a) =>
-  a == null ? defaultFn() : a
+export const withDefault = fp.curry2(
+  (defaultFn, a) => a == null ? defaultFn() : a
 );
 
-export const matchWith = fp.curry2(({Just, Nothing}, a) =>
-  a == null ? Nothing() : Just(a)
+export const matchWith = fp.curry2(
+  ({ Just, Nothing }, a) => a == null ? Nothing() : Just(a)
 );
