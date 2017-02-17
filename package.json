@@ -1,6 +1,6 @@
 {
   "name": "@iml/maybe",
-  "version": "2.1.1",
+  "version": "2.1.2",
   "description": "The Maybe datatype",
   "main": "source/maybe.js",
   "scripts": {
