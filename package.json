@@ -25,6 +25,9 @@
   "license": "MIT",
   "jest": {
     "setupTestFrameworkScriptFile": "./setup-jasmine-env.js",
+    "transformIgnorePatterns": [
+      "/node_modules/(?!@iml)/"
+    ],
     "coveragePathIgnorePatterns": [
       "/node_modules/",
       "/setup-jasmine-env.js",
@@ -32,23 +35,23 @@
     ]
   },
   "dependencies": {
-    "@iml/fp": "^7.0.4"
+    "@iml/fp": "^7.0.8"
   },
   "devDependencies": {
     "babel-eslint": "7.1.1",
-    "babel-plugin-transform-class-properties": "6.18.0",
+    "babel-plugin-transform-class-properties": "6.23.0",
     "babel-plugin-transform-flow-strip-types": "6.22.0",
     "babel-preset-env": "1.1.8",
-    "eslint": "3.14.0",
+    "eslint": "3.15.0",
+    "eslint-config-prettier": "1.2.0",
     "eslint-plugin-flowtype": "2.30.0",
-    "eslint-plugin-fp": "2.3.0",
     "eslint-plugin-import": "2.2.0",
-    "flow-bin": "0.38.0",
+    "eslint-plugin-prettier": "2.0.0",
+    "flow-bin": "0.39.0",
     "intel-flow-jasmine": "1.6.0",
     "jasmine-reporters": "2.2.0",
-    "intel-jasmine-n-matchers": "2.1.1",
-    "jasmine": "2.5.2",
     "jest": "18.1.0",
-    "pre-commit": "1.2.2"
+    "pre-commit": "1.2.2",
+    "prettier": "0.18.0"
   }
 }
