@@ -26,9 +26,7 @@ export const from = mA => mA;
 
 export const Nothing = null;
 
-export const map = fp.curry2(
-  (fn, a) => a == null ? Nothing : fn(a)
-);
+export const map = fp.curry2((fn, a) => a == null ? Nothing : fn(a));
 
 export const withDefault = fp.curry2(
   (defaultFn, a) => a == null ? defaultFn() : a

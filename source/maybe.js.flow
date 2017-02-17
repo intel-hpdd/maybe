@@ -32,30 +32,30 @@ declare export function from<A>(mA: Maybe<A>): ?A;
 
 declare export function withDefault<A>(
   defaultFn: () => A,
-  ...rest: void[]
-): Fn1<Maybe<A>, A>;
-declare export function withDefault<A>(
-  defaultFn: () => A,
   mA: Maybe<A>
 ): A;
+declare export function withDefault<A>(
+  defaultFn: () => A,
+  ...rest: void[]
+): Fn1<Maybe<A>, A>;
 
 type caseT<A, B> = {| Just(a: A): B, Nothing(): B |};
 
 declare export function matchWith<A, B>(
   case: caseT<A, B>,
-  ...rest: empty[]
-): Fn1<Maybe<A>, B>;
-declare export function matchWith<A, B>(
-  case: caseT<A, B>,
   ma: Maybe<A>
 ): B;
+declare export function matchWith<A, B>(
+  case: caseT<A, B>,
+  ...rest: empty[]
+): Fn1<Maybe<A>, B>;
 
-declare export function map<A, B>(
-  fn: Fn1<A, B>,
-  xs: Maybe<A>,
-  ...rest: Array<void>
-): Maybe<B>;
 declare export function map<A, B>(
   fn: Fn1<A, B>,
   ...rest: Array<void>
 ): Fn1<Maybe<A>, Maybe<B>>;
+declare export function map<A, B>(
+  fn: Fn1<A, B>,
+  xs: Maybe<A>,
+  ...rest: empty[]
+): Maybe<B>;
