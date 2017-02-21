@@ -1,3 +1,5 @@
+// @flow
+
 //
 // INTEL CONFIDENTIAL
 //
@@ -19,19 +21,36 @@
 // otherwise. Any license under such intellectual property rights must be
 // express and approved by Intel in writing.
 
-import * as fp from '@iml/fp';
+export class Just<A> {
+  value: A;
+  constructor(a: A): void {
+    this.value = a;
+  }
+}
 
-export const of = a => a;
-export const from = mA => mA;
+export class Nothing {}
 
-export const Nothing = null;
+export type Maybe<A> = Nothing | Just<A>;
 
-export const map = fp.curry2((fn, a) => a == null ? Nothing : fn(a));
+export const ofJust = <A>(a: A): Just<A> => new Just(a);
+export const ofNothing = () => new Nothing();
 
-export const withDefault = fp.curry2(
-  (defaultFn, a) => a == null ? defaultFn() : a
-);
+export const of = <A>(a: ?A): Maybe<A> =>
+  a == null ? new Nothing() : new Just(a);
 
-export const matchWith = fp.curry2(
-  ({ Just, Nothing }, a) => a == null ? Nothing() : Just(a)
-);
+export const fromJust = <A>(mA: Just<A>): A => mA.value;
+
+export const from = <A>(mA: Maybe<A>): ?A =>
+  mA instanceof Just ? mA.value : null;
+
+export const map = <A, B>(fn: (A) => B, mA: Maybe<A>): Maybe<B> =>
+  mA instanceof Just ? ofJust(fn(mA.value)) : mA;
+
+export const withDefault = <A, Ma: Maybe<A>>(defaultFn: () => A, mA: Ma): A =>
+  mA instanceof Nothing ? defaultFn() : mA.value;
+
+export const matchWith = <A, B>(
+  cases: {| Just(a: A): B, Nothing(): B |},
+  mA: Maybe<A>
+): B =>
+  mA instanceof Nothing ? cases.Nothing() : cases.Just(mA.value);
