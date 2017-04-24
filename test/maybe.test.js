@@ -107,13 +107,10 @@ describe('Maybe', () => {
       const key = 'name';
       const options = ['street', 'phone', 'city', 'state', 'zip'];
 
-      const result = maybe.chain(
-        x => {
-          const token = options.find(val => val === x);
-          return !token ? maybe.ofNothing() : maybe.ofJust(token);
-        },
-        maybe.of(key)
-      );
+      const result = maybe.chain(x => {
+        const token = options.find(val => val === x);
+        return !token ? maybe.ofNothing() : maybe.ofJust(token);
+      }, maybe.of(key));
 
       expect(result instanceof maybe.Nothing).toBe(true);
     });
@@ -122,13 +119,10 @@ describe('Maybe', () => {
       const key = 'name';
       const options = ['street', 'phone', 'city', 'name', 'state', 'zip'];
 
-      const result = maybe.chain(
-        x => {
-          const token = options.find(val => val === x);
-          return !token ? maybe.ofNothing() : maybe.ofJust(token);
-        },
-        maybe.of(key)
-      );
+      const result = maybe.chain(x => {
+        const token = options.find(val => val === x);
+        return !token ? maybe.ofNothing() : maybe.ofJust(token);
+      }, maybe.of(key));
 
       expect(result).toEqual(maybe.ofJust('name'));
     });
