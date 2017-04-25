@@ -3,7 +3,7 @@
 //
 // INTEL CONFIDENTIAL
 //
-// Copyright 2013-2016 Intel Corporation All Rights Reserved.
+// Copyright 2013-2017 Intel Corporation All Rights Reserved.
 //
 // The source code contained or described herein and all documents related
 // to the source code ("Material") are owned by Intel Corporation or its
@@ -21,41 +21,36 @@
 // otherwise. Any license under such intellectual property rights must be
 // express and approved by Intel in writing.
 
-
-import {curry} from 'intel-fp';
-
-export default class Maybe {
-  value:any;
-  constructor(value:any) {
-    this.value = value;
-  }
-
-  static of (x:any):Maybe {
-    return new Maybe(x);
-  }
-
-  join ():Maybe|any {
-    return this.isNothing() ? Maybe.of(null) : this.value;
-  }
-
-  map (f:Function):Maybe {
-    return this.isNothing() ? Maybe.of(null) : Maybe.of(f(this.value));
-  }
-
-  isNothing ():boolean {
-    return this.value == null;
-  }
-
-  chain (f:Function):Maybe|any {
-    return this.map(f).join();
-  }
-
-  ap (other:Object):Maybe|any {
-    return this.isNothing() ? Maybe.of(null) : other.map(this.value);
+export class Just<A> {
+  value: A;
+  constructor(a: A): void {
+    this.value = a;
   }
 }
 
-export const withDefault = curry(2, (defaultFn, maybe) => maybe.isNothing() ?
-  defaultFn() :
-  maybe.value
-);
+export class Nothing {}
+
+export type Maybe<A> = Nothing | Just<A>;
+
+export const ofJust = <A>(a: A): Just<A> => new Just(a);
+export const ofNothing = () => new Nothing();
+
+export const of = <A>(a: ?A): Maybe<A> =>
+  a == null ? new Nothing() : new Just(a);
+
+export const fromJust = <A>(mA: Just<A>): A => mA.value;
+
+export const from = <A>(mA: Maybe<A>): ?A =>
+  mA instanceof Just ? mA.value : null;
+
+export const map = <A, B>(fn: (A) => B, mA: Maybe<A>): Maybe<B> =>
+  mA instanceof Just ? ofJust(fn(mA.value)) : mA;
+
+export const withDefault = <A, Ma: Maybe<A>>(defaultFn: () => A, mA: Ma): A =>
+  mA instanceof Nothing ? defaultFn() : mA.value;
+
+export const matchWith = <A, B>(
+  cases: {| Just(a: A): B, Nothing(): B |},
+  mA: Maybe<A>
+): B =>
+  mA instanceof Nothing ? cases.Nothing() : cases.Just(mA.value);

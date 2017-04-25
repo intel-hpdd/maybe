@@ -1,11 +1,10 @@
 [ignore]
-.*node_modules/babel-.*
-.*node_modules/babylon.*
-.*node_modules/intel-fp/test/fp-test.js
-.*dist/maybe*
 
 [include]
 
 [libs]
+node_modules/@mfl/flow-jasmine/flow-typed
 
 [options]
+module.use_strict=true
+experimental.strict_type_args=true

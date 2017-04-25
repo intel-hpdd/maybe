@@ -1,47 +1,52 @@
 {
-  "name": "intel-maybe",
-  "version": "1.0.0",
+  "name": "@mfl/maybe",
+  "version": "3.0.0",
   "description": "The Maybe datatype",
-  "main": "dist/maybe.js",
+  "main": "source/maybe.js",
   "scripts": {
-    "test": "NODE_ENV=test ./bin/test.js",
-    "eslint": "eslint ./",
-    "jscs": "jscs .",
-    "prepublish": "babel -d dist maybe.js && cp ./maybe.js ./dist/maybe.js.flow"
+    "test": "jest",
+    "cover": "NODE_ENV=test npm t -- --coverage",
+    "flow": "flow",
+    "eslint": "eslint ./"
   },
   "publishConfig": {
-    "registry": "https://ubit-artifactory-or.intel.com/artifactory/api/npm/iml-npm-local"
+    "access": "public"
   },
   "pre-commit": [
-    "jscs",
     "eslint",
+    "flow",
     "test"
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.intel.com/IML/maybe.git"
+    "url": "git@github.com:intel-hpdd/maybe.git"
   },
-  "author": "IML Team",
+  "author": "MFL Team",
   "license": "MIT",
-  "dependencies": {
-    "intel-fp": "4.0.1"
+  "jest": {
+    "transformIgnorePatterns": [
+      "/node_modules/(?!@mfl)/"
+    ],
+    "coveragePathIgnorePatterns": [
+      "/node_modules/",
+      "/test/"
+    ]
   },
   "devDependencies": {
-    "babel-cli": "6.4.5",
-    "babel-core": "6.4.5",
-    "babel-eslint": "5.0.0-beta9",
-    "babel-plugin-syntax-flow": "6.3.13",
-    "babel-plugin-transform-class-properties": "6.4.0",
-    "babel-plugin-transform-flow-strip-types": "6.4.0",
-    "babel-plugin-transform-strict-mode": "6.3.13",
-    "babel-preset-es2015": "6.3.13",
-    "babel-register": "6.4.3",
-    "eslint": "1.10.3",
-    "eslint-plugin-flow-vars": "0.1.3",
-    "intel-jasmine-junit-reporter": "1.0.0",
-    "intel-jasmine-n-matchers": "2.1.1",
-    "jasmine": "2.4.1",
-    "jscs": "2.9.0",
-    "pre-commit": "1.1.2"
+    "babel-eslint": "7.1.1",
+    "babel-plugin-transform-class-properties": "6.23.0",
+    "babel-plugin-transform-flow-strip-types": "6.22.0",
+    "babel-preset-env": "1.1.8",
+    "eslint": "3.16.0",
+    "eslint-config-prettier": "1.3.0",
+    "eslint-plugin-flowtype": "2.30.0",
+    "eslint-plugin-import": "2.2.0",
+    "eslint-plugin-prettier": "2.0.0",
+    "flow-bin": "0.39.0",
+    "@mfl/flow-jasmine": "1.6.0",
+    "jasmine-reporters": "2.2.0",
+    "jest": "19.0.0",
+    "pre-commit": "1.2.2",
+    "prettier": "0.18.0"
   }
 }
