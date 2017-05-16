@@ -101,4 +101,36 @@ describe('Maybe', () => {
       expect(matchFn(maybe.of('p'))).toBe('bap');
     });
   });
+
+  describe('chain', () => {
+    it('should chain with nothing', () => {
+      const key = 'name';
+      const options = ['street', 'phone', 'city', 'state', 'zip'];
+
+      const result = maybe.chain(
+        x => {
+          const token = options.find(val => val === x);
+          return !token ? maybe.ofNothing() : maybe.ofJust(token);
+        },
+        maybe.of(key)
+      );
+
+      expect(result instanceof maybe.Nothing).toBe(true);
+    });
+
+    it('should chain with a value', () => {
+      const key = 'name';
+      const options = ['street', 'phone', 'city', 'name', 'state', 'zip'];
+
+      const result = maybe.chain(
+        x => {
+          const token = options.find(val => val === x);
+          return !token ? maybe.ofNothing() : maybe.ofJust(token);
+        },
+        maybe.of(key)
+      );
+
+      expect(result).toEqual(maybe.ofJust('name'));
+    });
+  });
 });
