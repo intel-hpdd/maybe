@@ -1,5 +1,5 @@
 {
-  "name": "@mfl/maybe",
+  "name": "@iml/maybe",
   "version": "3.1.0",
   "description": "The Maybe datatype",
   "main": "source/maybe.js",
@@ -21,11 +21,11 @@
     "type": "git",
     "url": "git@github.com:intel-hpdd/maybe.git"
   },
-  "author": "MFL Team",
+  "author": "IML Team",
   "license": "MIT",
   "jest": {
     "transformIgnorePatterns": [
-      "/node_modules/(?!@mfl)/"
+      "/node_modules/(?!@iml)/"
     ],
     "coveragePathIgnorePatterns": [
       "/node_modules/",
@@ -43,7 +43,7 @@
     "eslint-plugin-import": "2.2.0",
     "eslint-plugin-prettier": "2.0.0",
     "flow-bin": "0.39.0",
-    "@mfl/flow-jasmine": "1.6.0",
+    "@iml/flow-jasmine": "1.6.1",
     "jasmine-reporters": "2.2.0",
     "jest": "19.0.0",
     "pre-commit": "1.2.2",
