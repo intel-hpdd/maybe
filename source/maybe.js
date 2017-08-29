@@ -27,17 +27,16 @@ export const fromJust = <A>(mA: Just<A>): A => mA.value;
 export const from = <A>(mA: Maybe<A>): ?A =>
   mA instanceof Just ? mA.value : null;
 
-export const map = <A, B>(fn: (A) => B, mA: Maybe<A>): Maybe<B> =>
+export const map = <A, B>(fn: A => B, mA: Maybe<A>): Maybe<B> =>
   mA instanceof Just ? ofJust(fn(mA.value)) : mA;
 
 export const withDefault = <A, Ma: Maybe<A>>(defaultFn: () => A, mA: Ma): A =>
   mA instanceof Nothing ? defaultFn() : mA.value;
 
-export const chain = <A, Ma: Maybe<A>>(fn: (A) => Ma, mA: Ma): Ma =>
+export const chain = <A, Ma: Maybe<A>>(fn: A => Ma, mA: Ma): Ma =>
   mA instanceof Nothing ? mA : fn(mA.value);
 
 export const matchWith = <A, B>(
   cases: {| Just(a: A): B, Nothing(): B |},
   mA: Maybe<A>
-): B =>
-  mA instanceof Nothing ? cases.Nothing() : cases.Just(mA.value);
+): B => (mA instanceof Nothing ? cases.Nothing() : cases.Just(mA.value));
